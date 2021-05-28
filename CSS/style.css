@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Indie+Flower&display=swap');
 
 *{
     box-sizing: border-box;
@@ -12,13 +11,15 @@ body{
 .heading_container{
     height: 8vh;
     width: 100vw;
-    z-index: 2;
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #1b6163;
     position: absolute;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    font-size: 2.3rem;
 }
 /* ***********************************MAIN AREA********************************************** */
 .working_area{
@@ -46,7 +47,7 @@ body{
     top: 8vh;
     z-index: 2;
     transition: 0.5s ease-in-out;
-    right: -178px;
+    /* right: -178px; */
 }
 .canvas{
     height: 100vh;
@@ -63,7 +64,7 @@ body{
     position: absolute;
     top: 8vh;
     padding-top: 0.5rem;
-    /* left: -218.6px; */
+    left: -218.6px;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -88,15 +89,9 @@ body{
 .toolbar_container:hover{
     left: 0;
 }
-/* .toolbar{
-    height: 100%;
-    width: 100%;
-    padding-top: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    background-color: #1b6163;
-} */
+.toolbar_container:hover ~ .canvas_area{
+    right: -178px;
+}
 .tool{
     height: 7%;
     padding: 2rem;
@@ -105,7 +100,9 @@ body{
     align-items: center;
     background-color: #1b6163;
     transition: 0.3s ease-in-out;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Caveat', cursive;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 .tool:hover{
     background-color: #1b6163;
@@ -121,7 +118,6 @@ img{
     margin-right: 0.5rem;
 }
 h4{
-    height: 0.5rem;
     width: 80%;
     color: black;
     margin-left: 0.5rem;

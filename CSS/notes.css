@@ -59,20 +59,8 @@
     border-radius: 2rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Caveat', cursive;
 }
-/* .text{
-    height: 100%;
-    width: 100%;
-    color: #1b6163;
-    text-align: center;
-    outline: none;
-    padding: 1rem;
-    font-size: 1.5rem;
-    overflow: auto;
-    border: none;
-    border-radius: 2rem;
-} */
 .mainArea::-webkit-scrollbar {
     display: none;
 }
