@@ -1,6 +1,7 @@
 //--------------------- MAIN AREA ----------------------
 let body = document.body;
 let headingBar = document.querySelector(".heading_container");
+let newBtn = document.querySelector(".new");
 let canvasArea = document.querySelector(".canvas_area");
 let canvas = document.querySelector("#canvas");
 let tool = canvas.getContext("2d");
@@ -9,7 +10,7 @@ canvas.width = window.innerWidth;
 tool.lineCap = 'round';
 let value = 3;
 tool.lineWidth = value;
-window.addEventListener("resize", function () { // whenever the window will be resized the canvas height and width will also change accordingly 
+window.addEventListener("resize", function () { 
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
 })
@@ -18,42 +19,41 @@ window.addEventListener("resize", function () { // whenever the window will be r
 //pencil
 let pencilBtn = document.querySelector(".pencil");
 let dropdown = document.querySelector(".dropdown_pencil");
-let color = document.querySelectorAll("#option"); // color option of pencil
-let pSlider = document.querySelector("#pSlider");  // for increasing the stroke size
-let current_color;  // active color
+let color = document.querySelectorAll("#option"); 
+let pSlider = document.querySelector("#pSlider");  
+let current_color;  
 
 //eraser
 let dropdownEraser = document.querySelector(".dropdown_eraser");
 let eraserBtn = document.querySelector(".eraser");
 let eSlider = document.querySelector("#eSlider");
+let activeTool = "pencil";
 
-let activeTool = "pencil"; //only for pencil and eraser
-
+//notes
 let notesBtn = document.querySelector(".notes");
+let dropdownNote = document.querySelector(".dropdown_note");
+let noteColor = document.querySelectorAll(".noteOption");
+let initialNoteColor = "yellow";   
+
 let uploadBtn = document.querySelector(".upload");
 let downloadBtn = document.querySelector(".download");
 
-// undo/redo
 let undoBtn = document.querySelector(".undo");
 let redoBtn = document.querySelector(".redo");
 let undoArr = [];
 let redoArr = [];
 let interval = null;
 
-//zoom feature
 let zoomInBtn = document.querySelector(".zoom_in");
 let zoomOutBtn = document.querySelector(".zoom_out");
 zoomLevel = 1;
 
-
 function drawing(color, value) {
     let isMousedown = false;
     canvasArea.addEventListener("mousedown", function (e) {
-        //getting the point where ever the mouse has clicked
         let x = e.clientX;
         let y = e.clientY;
-        y = getCoordinate(y); // done beacuse of the header height
-        //storing the points for undo and redo functions
+        y = getCoordinate(y);
         let points = {
             "x": x,
             "y": y,
@@ -61,10 +61,10 @@ function drawing(color, value) {
             "color": color,
             "event": "mousedown"
         }
-        tool.beginPath();  // starting the path  (getting to the starting point)
-        tool.moveTo(x, y); // moving to (x,y) coordinates
+        tool.beginPath(); 
+        tool.moveTo(x, y); 
         isMousedown = true;
-        undoArr.push(points);
+        undoArr.push(points); 
     })
 
     canvasArea.addEventListener("mousemove", function (e) {
@@ -84,13 +84,15 @@ function drawing(color, value) {
                     "event": "mousemove"
                 }
                 undoArr.push(points);
+                tool.lineTo(x, y);  // draw a line to previous points (in the backend)
+                tool.stroke();  // draws the line on the UI
             }
-            else {
+            else if(activeTool == "eraser") {
                 tool.globalCompositeOperation = 'destination-out';  // removes the existing data/line/shape that doesn't come under when new shape is kept on them.
                 tool.lineWidth = value;
+                tool.lineTo(x, y);  // draw a line to previous points (in the backend)
+                tool.stroke();  // draws the line on the UI
             }
-            tool.lineTo(x, y);  // draw a line to previous points (in the backend)
-            tool.stroke();  // draws the line on the UI
         }
     })
 
@@ -101,6 +103,10 @@ function drawing(color, value) {
 }
 
 function getCoordinate(initalY) {
-    let obj = headingBar.getBoundingClientRect(); // getting the height of the header
+    let obj = headingBar.getBoundingClientRect(); 
     return initalY - obj.height;
 }
+
+newBtn.addEventListener("click", function(){
+    tool.clearRect(0, 0, canvas.width, canvas.height);
+})

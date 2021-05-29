@@ -1,10 +1,8 @@
-// canvas.addEventListener
 undoBtn.addEventListener("mousedown", function(){
-    // used set interval for the continuous flow 
-    interval = setInterval(function(){     // returns an interval id which will be usefull for clearing when stoped
+    interval = setInterval(function(){    
         if(undoArr.length > 0){
-            redoArr.push(undoArr.pop());
-            redraw();
+            redoArr.push(undoArr.pop());  
+            redraw();  
         }
         else{
             clearInterval();
@@ -34,8 +32,6 @@ redoBtn.addEventListener("mouseup", function(){
 zoomInBtn.addEventListener("click", function(){
     if(zoomLevel < 3){
         zoomLevel += 0.2;
-        // tool.scale(zoomLevel,zoomLevel)
-        // redraw();
         canvas.style.transform = `scale(${zoomLevel})`
     }
 })
@@ -47,11 +43,10 @@ zoomOutBtn.addEventListener("click", function(){
     }
 })
 
-//re-drawing after the undo and redo event
 function redraw(){
-    tool.clearRect(0, 0, canvas.width, canvas.height); // clearing the whole area first
+    tool.clearRect(0, 0, canvas.width, canvas.height); 
     for(let i = 0; i < undoArr.length; i++){
-        let {x, y, color, value, event} = undoArr[i];
+        let {x, y, color, value, event} = undoArr[i];  
         tool.strokeStyle = color;
         tool.lineWidth = value;
         if(event == "mousedown"){
