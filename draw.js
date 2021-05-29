@@ -3,6 +3,9 @@ drawing("black", value);
 pencilBtn.addEventListener("click", function () {
     let isActive = pencilBtn.classList.contains("active_tool");
     if (!isActive) {
+        eraserBtn.classList.remove("active_tool")
+        dropdownEraser.style.left = -30 + "vh";
+        
         pencilBtn.classList.add("active_tool")
         dropdown.style.left = 0;
         activeTool = "pencil";
@@ -35,6 +38,9 @@ pSlider.addEventListener("change", function () {
 eraserBtn.addEventListener("click", function () {
     let isActive = eraserBtn.classList.contains("active_tool");
     if (!isActive) {
+        pencilBtn.classList.remove("active_tool")
+        dropdown.style.left = -30 + "vh";
+
         eraserBtn.classList.add("active_tool");
         dropdownEraser.style.left = 0;
         activeTool = "eraser";

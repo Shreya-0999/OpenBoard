@@ -5,8 +5,8 @@
     position: absolute;
     top: 9.5vh;
     left: -30vh;
-    background-color: rgb(238, 242, 247);
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2) inset;
+    background-color: #0e3b3bef;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2) ;
     transition: ease-in 0.7s;
 }
 .dropdownActive{
@@ -18,7 +18,7 @@
     position: absolute;
     top: 18.5vh;
     left: -30vh;
-    background-color: rgb(238, 242, 247);
+    background-color: #0e3b3bef;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2) inset;
     transition: ease-in 0.7s;
 }

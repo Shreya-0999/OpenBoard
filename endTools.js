@@ -1,4 +1,3 @@
-
 // canvas.addEventListener
 undoBtn.addEventListener("mousedown", function(){
     // used set interval for the continuous flow 

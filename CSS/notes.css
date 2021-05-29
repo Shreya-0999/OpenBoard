@@ -1,9 +1,7 @@
 .sticky_notes{
-    height: 13rem;
-    width: 18rem;
     position: absolute;
     top: 2rem;
-    left: 4rem;
+    left: 15rem;
     display: flex;
     flex-direction: column;
     border-radius: 2rem;
@@ -16,13 +14,14 @@
     animation: animateNote 2s ease-in forwards;
 }
 .navBar{
-    height: 15%;
-    width: 100%;
+    height: 2rem;
+    width: 18rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 0.5rem;
     background-color: #1b6163;
+    cursor: pointer;
 }
 .nIcon{
     height: 25px;
@@ -33,6 +32,7 @@
     justify-content: center;
     align-items: center;
     color: rgb(238, 242, 247);
+    cursor: pointer;
 }
 .delete{
     font-size: 1.3rem;
@@ -42,13 +42,14 @@
 }
 .nIcon:hover{
     background-color: #124142;
+    cursor: pointer;
 }
 .activeNIcon{
     background-color: #124142;
 }
 .mainArea{
-    height: 85%;
-    width: 100%;
+    height: 9rem;
+    width: 18rem;
     padding: 0 1rem;
     opacity: 1;
     color: #1b6163;
