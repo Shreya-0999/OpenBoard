@@ -93,6 +93,9 @@ function drawing(color, value) {
                 tool.lineTo(x, y);  // draw a line to previous points (in the backend)
                 tool.stroke();  // draws the line on the UI
             }
+            else if(activeTool == "note"){
+                tool.strokeStyle = "rgba(0,0,0,0)"
+            }
         }
     })
 
