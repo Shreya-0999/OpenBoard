@@ -68,6 +68,7 @@ function createTask(color) {
 }
 
 function dragNote(e) {
+    tool.strokeStyle = "rgba(0,0,0,0)"; // to remove pencil marks
     let stickyPad = e.currentTarget.parentNode;
     let offset = [0, 0];   
     let isDown = false;

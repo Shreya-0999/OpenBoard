@@ -73,7 +73,7 @@ function drawing(color, value) {
         y = getCoordinate(y);
         if (isMousedown == true) {
             if (activeTool == "pencil") {
-                tool.globalCompositeOperation = 'source-over';  // draws new shapes on top of the existing data or line, shape... (for removing eraser feature)
+                tool.globalCompositeOperation = 'source-over';  
                 tool.strokeStyle = color;
                 tool.lineWidth = value;
                 let points = {
@@ -84,14 +84,14 @@ function drawing(color, value) {
                     "event": "mousemove"
                 }
                 undoArr.push(points);
-                tool.lineTo(x, y);  // draw a line to previous points (in the backend)
-                tool.stroke();  // draws the line on the UI
+                tool.lineTo(x, y);  
+                tool.stroke();  
             }
             else if(activeTool == "eraser") {
-                tool.globalCompositeOperation = 'destination-out';  // removes the existing data/line/shape that doesn't come under when new shape is kept on them.
+                tool.globalCompositeOperation = 'destination-out';  
                 tool.lineWidth = value;
-                tool.lineTo(x, y);  // draw a line to previous points (in the backend)
-                tool.stroke();  // draws the line on the UI
+                tool.lineTo(x, y);  
+                tool.stroke();  
             }
             else if(activeTool == "note"){
                 tool.strokeStyle = "rgba(0,0,0,0)"
