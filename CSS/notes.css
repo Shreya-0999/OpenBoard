@@ -91,14 +91,16 @@
 .mainArea{
     height: 10rem;
     width: 15rem;
+    padding: 0.5rem;
     text-align: center;
     font-family: 'Caveat', cursive;
 }
 h2{
-    height: 25%;
+    height: 28%;
     width: 100%;
     margin: 0;
     font-size: 2rem;
+    outline: none;
 }
 .textArea{
     height: 75%;
@@ -107,6 +109,7 @@ h2{
     padding: 0.5rem;
     outline: none;
     overflow: auto;
+    background-color: rgba(230, 222, 222, 0.26);
 }
 .textArea::-webkit-scrollbar {
     display: none;
