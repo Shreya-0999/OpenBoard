@@ -10,7 +10,7 @@ canvas.width = window.innerWidth;
 tool.lineCap = 'round';
 let value = 3;
 tool.lineWidth = value;
-window.addEventListener("resize", function () { 
+window.addEventListener("resize", function () {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
 })
@@ -19,9 +19,9 @@ window.addEventListener("resize", function () {
 //pencil
 let pencilBtn = document.querySelector(".pencil");
 let dropdown = document.querySelector(".dropdown_pencil");
-let color = document.querySelectorAll("#option"); 
-let pSlider = document.querySelector("#pSlider");  
-let current_color;  
+let color = document.querySelectorAll("#option");
+let pSlider = document.querySelector("#pSlider");
+let current_color;
 
 //eraser
 let dropdownEraser = document.querySelector(".dropdown_eraser");
@@ -33,10 +33,18 @@ let activeTool = "pencil";
 let notesBtn = document.querySelector(".notes");
 let dropdownNote = document.querySelector(".dropdown_note");
 let noteColor = document.querySelectorAll(".noteOption");
-let initialNoteColor = "yellow";   
+
+//shape
+let shapeBtn = document.querySelector(".shape");
+let dropdownShape = document.querySelector(".dropdown_shape");
+let shapetype = document.querySelectorAll(".shape_icon");
+let shapeColor = document.querySelectorAll(".shapeOption");
+let activeShapeColor = "black";  
+let type = "square" 
 
 let uploadBtn = document.querySelector(".upload");
 let downloadBtn = document.querySelector(".download");
+let colorArr = ["pink", "lightred", "yellow", "lightblue", "lightgreen"]; 
 
 let undoBtn = document.querySelector(".undo");
 let redoBtn = document.querySelector(".redo");
@@ -61,10 +69,10 @@ function drawing(color, value) {
             "color": color,
             "event": "mousedown"
         }
-        tool.beginPath(); 
-        tool.moveTo(x, y); 
+        tool.beginPath();
+        tool.moveTo(x, y);
         isMousedown = true;
-        undoArr.push(points); 
+        undoArr.push(points);
     })
 
     canvasArea.addEventListener("mousemove", function (e) {
@@ -73,7 +81,7 @@ function drawing(color, value) {
         y = getCoordinate(y);
         if (isMousedown == true) {
             if (activeTool == "pencil") {
-                tool.globalCompositeOperation = 'source-over';  
+                tool.globalCompositeOperation = 'source-over';
                 tool.strokeStyle = color;
                 tool.lineWidth = value;
                 let points = {
@@ -84,16 +92,16 @@ function drawing(color, value) {
                     "event": "mousemove"
                 }
                 undoArr.push(points);
-                tool.lineTo(x, y);  
-                tool.stroke();  
+                tool.lineTo(x, y);
+                tool.stroke();
             }
-            else if(activeTool == "eraser") {
-                tool.globalCompositeOperation = 'destination-out';  
+            else if (activeTool == "eraser") {
+                tool.globalCompositeOperation = 'destination-out';
                 tool.lineWidth = value;
-                tool.lineTo(x, y);  
-                tool.stroke();  
+                tool.lineTo(x, y);
+                tool.stroke();
             }
-            else if(activeTool == "note"){
+            else if (activeTool == "note") {
                 tool.strokeStyle = "rgba(0,0,0,0)"
             }
         }
@@ -106,10 +114,24 @@ function drawing(color, value) {
 }
 
 function getCoordinate(initalY) {
-    let obj = headingBar.getBoundingClientRect(); 
+    let obj = headingBar.getBoundingClientRect();
     return initalY - obj.height;
 }
 
-newBtn.addEventListener("click", function(){
+newBtn.addEventListener("click", function () {
     tool.clearRect(0, 0, canvas.width, canvas.height);
+
+    // removing all notes
+    let notes = document.querySelectorAll(".sticky_notes");
+    if (notes) {
+        for (let i = 0; i < notes.length; i++)
+            notes[i].remove();
+    }
+
+    // removing all images
+    let image = document.querySelectorAll(".image_box");
+    if (image) {
+        for (let i = 0; i < image.length; i++)
+            image[i].remove();
+    }
 })

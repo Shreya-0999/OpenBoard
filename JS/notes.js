@@ -13,8 +13,8 @@ notesBtn.addEventListener("click", function () {
 
 for (let i = 0; i < noteColor.length; i++) {
     noteColor[i].addEventListener("click", function (e) {
-        initialNoteColor = noteColor[i].classList[0];
-        createTask(initialNoteColor);
+        let NoteColor = noteColor[i].classList[0];
+        createTask(NoteColor);
         dropdownNote.style.left = -30 + "vh";
         notesBtn.classList.remove("active_tool");
     })
@@ -38,7 +38,6 @@ function createTask(color) {
     </div>`
     canvasArea.appendChild(stickyPad);
 
-    let textArea = stickyPad.querySelector(".textArea");
     let mainArea = stickyPad.querySelector(".mainArea")
     let minimise = stickyPad.querySelector(".minimise");
     minimise.addEventListener("click", function () {
@@ -60,26 +59,30 @@ function createTask(color) {
 
     let navBar = stickyPad.querySelector(".navBar");
     navBar.addEventListener("click", function (e) {
-        activeTool = "notes"; 
+        activeTool = "notes";
         dragNote(e);
     })
     navBar.click(); // to activate drag option
-    return textArea;
 }
 
-function dragNote(e) {
+function dragNote(e, type) {
     tool.strokeStyle = "rgba(0,0,0,0)"; // to remove pencil marks
-    let stickyPad = e.currentTarget.parentNode;
-    let offset = [0, 0];   
+    let stickyPad
+    if(type != "image"){
+        stickyPad = e.currentTarget.parentNode;
+    }
+    else{
+        stickyPad = e.currentTarget.parentNode.parentNode;
+    }
+    let offset = [0, 0];
     let isDown = false;
     stickyPad.addEventListener('mousedown', function (e) {
         isDown = true;
-        offset = [         
+        offset = [
             stickyPad.offsetLeft - e.clientX,
             stickyPad.offsetTop - e.clientY
         ];
     }, true);
-    
 
     canvasArea.addEventListener('mousemove', function (e) {
         if (isDown) {
